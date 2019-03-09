@@ -8,12 +8,13 @@
     在从左到右从上到下递增的矩阵中，判断目标数是否存在
 
     >>> m = [[1, 2, 8, 9], [2, 4, 9, 12], [4, 7, 10, 13], [6, 8, 11, 15]]
-    >>> search_in_matrix(7)
-    >>> True
-    >>> search_in_matrix(5)
-    >>> False
+    >>> search_in_matrix(7, m)
+    True
+    >>> search_in_matrix(5, m)
+    False
 """
 
+# 思路：从右上角定点出发。
 
 def search_in_matrix(target: int, matrix: 'List[List[int]]') -> 'bool':
 
