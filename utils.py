@@ -66,3 +66,10 @@ def deserialize_tree_util(nodes):
     root.left = deserialize_tree_util(nodes)
     root.right = deserialize_tree_util(nodes)
     return root
+
+def is_same_tree(p: 'TreeNode', q: 'TreeNode') -> 'bool':
+    if p and q:
+        return (p.val==q.val and is_same_tree(p.left, q.left) and
+                is_same_tree(p.right, q.right))
+    else:
+        return p is q
