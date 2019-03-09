@@ -1,0 +1,6 @@
+.env*
+
+# PyCharm
+.idea/
+
+.pyc*
