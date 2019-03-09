@@ -20,6 +20,14 @@ def construct_linklist(nodes: 'iterable')-> 'LinkedList':
         h = h.next
     return head.next
 
+def pretty_linklist(head: 'LinkedList') -> str:
+    ans = []
+    h = head
+    while h:
+        ans.append(str(h.val))
+        h = h.next
+    return '->'.join(ans)
+
 
 class TreeNode:
 
@@ -45,3 +53,16 @@ def inorder_traversal(root: TreeNode) -> list:
             yield from dfs(node.right)
 
     return list(dfs(root))
+
+def deserialize_tree(data):
+    nodes = data.split(',')[::-1]
+    return deserialize_tree_util(nodes)
+
+def deserialize_tree_util(nodes):
+    val = nodes.pop()
+    if val == '$':
+        return None
+    root = TreeNode(int(val))
+    root.left = deserialize_tree_util(nodes)
+    root.right = deserialize_tree_util(nodes)
+    return root
