@@ -14,7 +14,7 @@
     False
 """
 
-# 思路：从右上角定点出发。
+# 思路：从右上角顶点出发。
 
 def search_in_matrix(target: int, matrix: 'List[List[int]]') -> 'bool':
 
