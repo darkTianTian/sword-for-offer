@@ -38,7 +38,7 @@ class RandomListNode(ListNode):
         self.random = None
 
 
-def copyRandomList(head):
+def copyRandomList(head: 'RandomListNode') -> 'RandomListNode':
     """
     解法1：遍历两次
     """
@@ -55,7 +55,7 @@ def copyRandomList(head):
 
     return cp_map.get(head)
 
-def copyRandomList2(head):
+def copyRandomList2(head: 'RandomListNode') -> 'RandomListNode':
     """
     解法2：遍历一次
     """
