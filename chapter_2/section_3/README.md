@@ -50,7 +50,7 @@ class Spam(metaclass=Singleton):
         print('Creating Spam')
 ```
 
-### 4_二维数组中的查找
+### 面试题2-使用Python实现单例模式
 
 #### 选取右上角为起始点。
 
