@@ -68,21 +68,20 @@ class Solution:
 注意：visited是一维数组。
 
 ```python
-class Solution:
-    def movingCount(self, threshold, rows, cols):
-        def get_sum(x, y):
-            return sum(map(int, str(x))) + sum(map(int, str(y)))
-            
-        def movingCountCore(threshold, rows, cols, i, j):
-            if get_sum(i, j) <= threshold:
-                self.visited[i*cols+j] = True
-                for x, y in ((i-1, j), (i+1, j), (i, j-1), (i, j+1)):
-                    if 0<=x<rows and 0<=y<cols and not self.visited[x*cols+y]:
-                        movingCountCore(threshold, rows, cols, x, y)
-            
-        self.visited = [False] * rows * cols
-        movingCountCore(threshold, rows, cols, 0, 0)
-        return sum(self.visited)
+def movingCount(self, threshold, rows, cols):
+    visited = [[False]*cols for _ in range(rows)]
+    def get_sum(x, y):
+        return sum(map(int, str(x)+str(y)))
+
+    def movingCore(threshold, rows, cols, i, j):
+        if get_sum(i, j) <= threshold:
+            visited[i][j] = True
+            for x, y in ((i-1, j), (i+1, j), (i, j-1), (i, j+1)):
+                if 0<=x<rows and 0<=y<cols and not visited[x][y]:
+                    movingCore(threshold, rows, cols, x, y)
+
+    movingCore(threshold, rows, cols, 0, 0)
+    return sum(sum(visited, []))
 ```
 
 ### 14 剪绳子
@@ -116,12 +115,11 @@ def cut_rope(length):
 方法一：常规解法，使用1与n作与运算，如果不是0说明，含有一个1。
 ```python
 def hamming_weight(n):
-    bits, mask = 0, 1
+    count = 0
     for _ in range(32):
-        if n&mask != 0:
-            bits += 1
-        mask <<= 1
-    return bits
+        count += (n&1==1)
+        n >>= 1
+    return count
 ```
 方法二：关键点是，一个数n和n-1的与运算操作，相当于去掉了最右面的1。
 ```python

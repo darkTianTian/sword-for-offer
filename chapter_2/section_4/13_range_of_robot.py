@@ -13,17 +13,18 @@
 
 
 def movingCount(threshold: int, rows: int, cols: int) -> int:
+        # write code here
+    visited = [[False] * cols for _ in range(rows)]
+
     def get_sum(x, y):
-        return sum(map(int, str(x))) + sum(map(int, str(y)))
+        return sum(map(int, str(x) + str(y)))
 
-    def movingCountCore(threshold, rows, cols, i, j):
+    def movingCore(threshold, rows, cols, i, j):
         if get_sum(i, j) <= threshold:
-            visited[i * cols + j] = True
+            visited[i][j] = True
             for x, y in ((i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)):
-                if (0 <= x < rows and 0 <= y < cols and
-                        not visited[x * cols + y]):
-                    movingCountCore(threshold, rows, cols, x, y)
+                if 0 <= x < rows and 0 <= y < cols and not visited[x][y]:
+                    movingCore(threshold, rows, cols, x, y)
 
-    visited = [False] * rows * cols
-    movingCountCore(threshold, rows, cols, 0, 0)
-    return sum(visited)
+    movingCore(threshold, rows, cols, 0, 0)
+    return sum(sum(visited, []))
