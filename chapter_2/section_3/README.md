@@ -68,14 +68,14 @@ def find(target, array):
     return False
 ```
 
-### 5.替换空格
+### 5 替换空格
 
 ```python
 def replaceSpace(self, s):
     return ''.join(c if c!=' ' else '%20' for c in s)
 ```
 
-### 6.从尾到头打印链表
+### 6 从尾到头打印链表
 
 ```python
 def printListFromTailToHead(self, listNode):
@@ -86,15 +86,106 @@ def printListFromTailToHead(self, listNode):
     return stack[::-1]
 ```
 
-### 7.重建二叉树
+### 7 重建二叉树
 说明：根据前序遍历和中序遍历重建二叉树，假设遍历结果中不包含重复的数字。
-{% post_link LeetCode算法题整理（二叉树篇）Tree 105. Construct Binary Tree from Preorder and Inorder Traversal %}
+```python
+def buildTree(preorder, inorder):
+    if preorder == []:
+        return None
+    root_val = preorder[0]
+    root = TreeNode(root_val)
+    cut = inorder.index(root_val)
+    root.left = buildTree(preorder[1:cut+1], inorder[:cut])
+    root.right = buildTree(preorder[cut+1:], inorder[cut+1:])
+    return root
+```
+```python
+def buildTree(self, preorder: 'List[int]', inorder: 'List[int]') -> 'TreeNode':
+    def build(stop):
+        if inorder and inorder[-1] != stop:
+            root = TreeNode(preorder.pop())
+            root.left = build(root.val)
+            inorder.pop()
+            root.right = build(stop)
+            return root
+    preorder.reverse()
+    inorder.reverse()
+    return build(None)
+```
 
-### 9.用两个栈实现队列
+### 9 用两个栈实现队列
 
-{% post_link LeetCode算法题整理（设计篇）Design 232. Implement Queue using Stacks %}
+```python
+class MyQueue:
 
-### 9.1用两个队列实现栈
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+        
+    def push(self, x: int) -> None:
+        while self.s1:
+            self.s2.append(self.s1.pop())
+        self.s1.append(x)
+        while self.s2:
+            self.s1.append(self.s2.pop())
+        
+    def pop(self) -> int:
+        return self.s1.pop()
+        
+    def peek(self) -> int:
+        return self.s1[-1]
+        
+    def empty(self) -> bool:
+        return self.s1 == []
+```
 
-{% post_link LeetCode算法题整理（设计篇）Design 225. Implement Stack using Queues %}
+### 9_1 用两个队列实现栈
 
+两个队列
+```python
+class MyStack:
+
+    def __init__(self):
+        from collections import deque
+        self.q1, self.q2 = deque(), deque()
+
+    def push(self, x: int) -> None:
+        self.q2.append(x)
+        while self.q1:
+            self.q2.append(self.q1.popleft())
+        self.q1, self.q2 = self.q2, self.q1
+
+    def pop(self) -> int:
+        return self.q1.popleft()
+
+    def top(self) -> int:
+        return self.q1[0]
+        
+    def empty(self) -> bool:
+        return not self.q1
+
+```
+单队列旋转
+```python
+class MyStack:
+
+    def __init__(self):
+        from collections import deque
+        self.q = deque()
+
+    def push(self, x: int) -> None:
+        self.q.append(x)
+        # self.q.rotate(1)  这里是用了双端队列的特性
+        # self.q.rotate(1-len(self.q))  这里和下面循环是一样的效果
+        for _ in range(len(self.q)-1):
+            self.q.append(self.q.popleft())
+
+    def pop(self) -> int:
+        return self.q.popleft()
+
+    def top(self) -> int:
+        return self.q[0]
+        
+    def empty(self) -> bool:
+        return not self.q
+```
