@@ -51,6 +51,52 @@ class Spam(metaclass=Singleton):
         print('Creating Spam')
 ```
 
+### 3 数组中重复的数字
+
+#### [牛客网传送门](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+书中参数还传了一个数组用来保存重复的数字，身为一个Pythoner，直接返回tuple。
+
+```python
+def duplicate(nums: list) -> int:
+    for i, num in enumerate(nums):
+        while i != num:
+            if num == nums[num]:
+                return True, num
+            else:
+                nums[i], nums[num] = nums[num], nums[i]
+                num = nums[i]
+    return False, None
+```
+
+### 3_1 数组中重复的数字，不能修改数组
+
+#### 404
+
+元素范围变成了1~n。此方法有缺陷，不能找出所有的重复的数字，因为在1~2的范围里有1和2两个数字，这个范围的数字也出现两次，不能确定是每个数字各出现一次还是某个数字出现了两次。
+
+```python
+def find_duplicate(nums: list) -> int:
+    def count_range(i, j):
+        return sum(i<=num<=j for num in nums)
+
+    lo = 1
+    hi = len(nums) - 1     # n为范围
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        count = count_range(lo, mid)
+        if lo == hi:
+            if count > 1:
+                return lo
+            else:
+                break
+        if count > mid-lo+1:
+            hi = mid
+        else:
+            lo = mid + 1
+    return -1
+```
+
 ### 4 二维数组中的查找
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
@@ -123,6 +169,29 @@ def buildTree(self, preorder: 'List[int]', inorder: 'List[int]') -> 'TreeNode':
     preorder.reverse()
     inorder.reverse()
     return build(None)
+```
+
+### 8 二叉树的下一个节点
+
+#### [牛客网传送门](https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=3)
+
+```python
+def GetNext(self, pNode):
+    # write code here
+    if not pNode:
+        return None
+    # 有右子树，右子树中最左节点
+    if pNode.right:
+        pre = pNode.right
+        while pre.left:
+            pre = pre.left
+        return pre
+    while pNode.next:
+        parent = pNode.next
+        if parent.left == pNode:
+            return parent
+        pNode = parent
+    return None
 ```
 
 ### 9 用两个栈实现队列
