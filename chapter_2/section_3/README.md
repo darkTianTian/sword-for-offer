@@ -50,7 +50,7 @@ class Spam(metaclass=Singleton):
         print('Creating Spam')
 ```
 
-### 面试题2-使用Python实现单例模式
+### 面试题2 使用Python实现单例模式
 
 #### 选取右上角为起始点。
 
