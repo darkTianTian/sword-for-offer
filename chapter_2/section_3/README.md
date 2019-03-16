@@ -47,5 +47,5 @@ class Singleton(type):
 # Example
 class Spam(metaclass=Singleton):
     def __init__(self):
-		print('Creating Spam')
+        print('Creating Spam')
 ```
