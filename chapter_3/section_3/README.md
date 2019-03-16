@@ -3,25 +3,36 @@
 #### [LeetCode传送门](https://leetcode.com/problems/powx-n/description/)
 
 ```python
-class Solution(object):
-
-    def myPow(self, x, n):
-        if n < 0:
-            return 1 / self.pow_with_unsigned(x, -n)
-        else:
-            return self.pow_with_unsigned(x, n)
-              
-    def pow_with_unsigned(self, x, n):
-        if n == 1:
-            return x
+def myPow(self, x: float, n: int) -> float:
+    
+    def pow_with_unsigned(x, n):
         if n == 0:
             return 1
-        
-        res = self.pow_with_unsigned(x, n >> 1)
-        res *= res    
+        if n == 1:
+            return x
+        ans = pow_with_unsigned(x, n>>1)
+        ans *= ans
         if n & 1 == 1:
-            res *= x
-        return res
+            ans *= x
+        return ans
+
+    if n < 0:
+        return 1 / pow_with_unsigned(x, -n)
+    else:
+        return pow_with_unsigned(x, n)
+```
+
+### 17 打印从1到最大的n位数
+
+#### 404.
+
+打印呗，反正Python的int没有长度限制。
+
+```python
+def print_n(n: int):
+    n = 10 ** (n)
+    for i in range(1, n):
+        print(i)
 ```
 
 ### 18 删除链表中的节点
