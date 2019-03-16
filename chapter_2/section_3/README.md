@@ -1,6 +1,6 @@
 ### 2. 实现Singleton模式
 
-#### 使用`__new__`控制实例创建过程
+使用`__new__`控制实例创建过程
 
 ```python
 class Singleton:
@@ -13,7 +13,7 @@ class Singleton:
 class MyClass(Singleton):
     pass
 ```
-#### 使用decorator
+使用decorator
 
 ```python
 from functools import wraps
@@ -31,7 +31,8 @@ class Myclass:
     pass
 ```
 
-#### 使用元类
+使用元类
+
 ```python
 class Singleton(type):
     def __init__(self, *args, **kwargs):
@@ -52,7 +53,9 @@ class Spam(metaclass=Singleton):
 
 ### 4 二维数组中的查找
 
-#### 选取右上角为起始点。
+#### [牛客网传送门](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+
+选取右上角为起始点。
 
 ```python
 def find(target, array):
@@ -70,12 +73,16 @@ def find(target, array):
 
 ### 5 替换空格
 
+#### [牛客网传送门](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+
 ```python
 def replaceSpace(self, s):
     return ''.join(c if c!=' ' else '%20' for c in s)
 ```
 
 ### 6 从尾到头打印链表
+
+#### [牛客网传送门](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
 
 ```python
 def printListFromTailToHead(self, listNode):
@@ -87,6 +94,9 @@ def printListFromTailToHead(self, listNode):
 ```
 
 ### 7 重建二叉树
+
+#### [LeetCode传送门](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/)
+
 说明：根据前序遍历和中序遍历重建二叉树，假设遍历结果中不包含重复的数字。
 ```python
 def buildTree(preorder, inorder):
@@ -99,6 +109,8 @@ def buildTree(preorder, inorder):
     root.right = buildTree(preorder[cut+1:], inorder[cut+1:])
     return root
 ```
+方法二：空间复杂度更低的解法。
+
 ```python
 def buildTree(self, preorder: 'List[int]', inorder: 'List[int]') -> 'TreeNode':
     def build(stop):
@@ -114,6 +126,8 @@ def buildTree(self, preorder: 'List[int]', inorder: 'List[int]') -> 'TreeNode':
 ```
 
 ### 9 用两个栈实现队列
+
+#### [LeetCode传送门](https://leetcode.com/problems/implement-queue-using-stacks/description/)
 
 ```python
 class MyQueue:
@@ -140,6 +154,8 @@ class MyQueue:
 ```
 
 ### 9_1 用两个队列实现栈
+
+#### [LeetCode传送门](https://leetcode.com/problems/implement-stack-using-queues/description/)
 
 两个队列
 ```python
