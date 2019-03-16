@@ -1,5 +1,7 @@
 ### 22 链表中倒数第k个节点
 
+#### 404.
+
 思路：两个指针，快指针先走k-1步，然后两个一起走，快指针走到尾节点时，慢指针在倒数第k个节点。
 需考虑k=0时和fast已经走到尾节点的情况。
 
@@ -17,7 +19,7 @@ def FindKthToTail(self, head, k):
 ```
 
 ### 23 链表中环的入口节点
-[LeetCode链接](https://leetcode.com/problems/linked-list-cycle-ii/description/)
+#### [LeetCode传送门](https://leetcode.com/problems/linked-list-cycle-ii/description/)
 
 * 首先判断此链表是否有环。
 * 然后再相交点和头结点一起走，一定会在入口相遇。
@@ -41,6 +43,8 @@ def detectCycle(self, head):
 
 ### 24 反转链表
 
+#### [LeetCode传送门](https://leetcode.com/problems/reverse-linked-list/description/)
+
 ```python
 def reverseList(self, head):
     prev = None
@@ -50,6 +54,8 @@ def reverseList(self, head):
 ```
 
 ### 25 合并两个有序链表
+
+#### [LeetCode传送门](https://leetcode.com/problems/merge-two-sorted-lists/description/)
 
 方法1：iteratively 迭代
 
@@ -83,7 +89,7 @@ def mergeTwoLists(l1, l2):
 
 ### 26 树的子结构
 
-[LeetCode链接](https://leetcode.com/problems/subtree-of-another-tree/description/)
+#### [LeetCode传送门](https://leetcode.com/problems/subtree-of-another-tree/description/)
 
 二刷的时候突然发现，此题和LeetCode中不同。LeetCode中子树`4-1-2`返回False因为2下边还有节点，所以不一样；而书中认为True，不考虑2下边的节点。
 

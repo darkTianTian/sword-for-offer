@@ -159,6 +159,8 @@ def countDigitOne(self, n):
 
 ### 45 把数组排成最小的数字
 
+#### [牛客网传送门](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+
 python2的写法。
 
 ```python

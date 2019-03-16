@@ -1,4 +1,7 @@
 ### 16 数值的整数次方
+
+#### [LeetCode传送门](https://leetcode.com/problems/powx-n/description/)
+
 ```python
 class Solution(object):
 
@@ -22,6 +25,9 @@ class Solution(object):
 ```
 
 ### 18 删除链表中的节点
+
+#### [LeetCode传送门](https://leetcode.com/problems/delete-node-in-a-linked-list/description/)
+
 开始看到这题的思路是，要是能拿到父节点就好了，然后这道题需要别的思路，其关键在于复制
 ```python
 def deleteNode(self, node):
@@ -31,7 +37,7 @@ def deleteNode(self, node):
 
 ### 19 正则表达式
 
-#### [10. Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/description/)
+#### [LeetCode传送门](https://leetcode.com/problems/regular-expression-matching/description/)
 
 * 先考虑没有`*`的情况，通过一个递归逐个字符判断
 
@@ -59,17 +65,18 @@ def deleteNode(self, node):
 
 ### 20 表示数值的字符串
 
-#### [65. Valid Number](https://leetcode.com/problems/valid-number/discuss/23728/A-simple-solution-in-Python-based-on-DFA)
+#### [LeetCode传送门](https://leetcode.com/problems/valid-number/discuss/23728/A-simple-solution-in-Python-based-on-DFA)
 
 此处留坑，[排名第一的python答案](https://leetcode.com/problems/valid-number/discuss/23728/A-simple-solution-in-Python-based-on-DFA)暂时没有理解。
 
 ### 21 调整数组顺序使奇数位于偶数前面
 
+#### [牛客网传送门](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 时间：O(n), 空间O(1)
 
 ```python
 def reOrderArray(self, array):
-    # write code here
     l, r = 0, len(array)-1
     while l < r:
         while l < r and array[l]&1 == 1:
@@ -90,7 +97,6 @@ def reOrderArray(array):
 
 ```python
 def reOrderArray(self, array):
-    # write code here
     from collections import deque
     q = deque()
     n = len(array)
@@ -101,3 +107,4 @@ def reOrderArray(self, array):
             q.append(array[i])
     return q
 ```
+
