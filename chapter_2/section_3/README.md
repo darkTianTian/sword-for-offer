@@ -50,7 +50,7 @@ class Spam(metaclass=Singleton):
         print('Creating Spam')
 ```
 
-### 4.二维数组中的查找
+### 4 二维数组中的查找
 
 #### 选取右上角为起始点。
 
