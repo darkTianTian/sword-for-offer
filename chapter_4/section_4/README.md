@@ -5,34 +5,31 @@
 方法一：遍历两次。
 
 ```python
-def copyRandomList(self, head):
-    cp_map = {}
-        
+def copyRandomList(self, head: 'Node') -> 'Node':
+    cp = {None: None}
     m = n = head
     while m:
-        cp_map[m] = RandomListNode(m.label)
+        cp[m] = Node(m.val, None, None)
         m = m.next
     while n:
-        cp_map[n].next = cp_map.get(n.next)
-        cp_map[n].random = cp_map.get(n.random)
+        cp[n].next = cp[n.next]
+        cp[n].random = cp[n.random]
         n = n.next
-        
-    return cp_map.get(head)
+    return cp[head]
 ```
 
 Time-O(n), Memory-O(n). 这种方式是相当于把第一次迭代的过程委托给了`defaultdict`，通过创建一个默认的对象，再去修改它的label值。
 
 ```python
-def copyRandomList(self, head):
-    from collections import defaultdict
-    cp = defaultdict(lambda: RandomListNode(0))
+def copyRandomList(self, head: 'Node') -> 'Node':
+    cp = collections.defaultdict(lambda: Node(0, None, None))
     cp[None] = None
-    n = head
-    while n:
-        cp[n].label = n.label
-        cp[n].next = cp[n.next]
-        cp[n].random = cp[n.random]
-        n = n.next
+    h = head
+    while h:
+        cp[h].val = h.val
+        cp[h].next = cp[h.next]
+        cp[h].random = cp[h.random]
+        h = h.next
     return cp[head]
 ```
 
@@ -121,21 +118,20 @@ class Codec:
     def serialize(self, root):
         if not root:
             return '$'
-        return (str(root.val) + ',' + self.serialize(root.left) + 
-                ',' + self.serialize(root.right))
-        
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
+
     def deserialize(self, data):
-        nodes = data.split(',')[::-1]
-        return self.deserialize_tree(nodes)
-    
-    def deserialize_tree(self, nodes):
-        val = nodes.pop()
-        if val == '$':
-            return None
-        root = TreeNode(val)
-        root.left = self.deserialize_tree(nodes)
-        root.right = self.deserialize_tree(nodes)
-        return root
+        
+        def deserialize_tree(nodes):
+            val = next(nodes)
+            if val == '$':
+                return None
+            root = TreeNode(val)
+            root.left = deserialize_tree(nodes)
+            root.right = deserialize_tree(nodes)
+            return root     
+        nodes = iter(data.split(','))
+        return deserialize_tree(nodes)
 ```
 
 ### 38 字符串的排列

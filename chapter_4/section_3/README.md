@@ -93,7 +93,28 @@ def zigzagLevelOrder(self, root: 'TreeNode') -> 'List[List[int]]':
     return ans
 ```
 
-### 33 二叉树的后序遍历
+### 33 是否是二叉搜索树的后序遍历
+
+#### [牛客网传送门](https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&tqId=11176&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=2)
+
+```python
+def VerifySquenceOfBST(self, seq):
+    from itertools import takewhile
+    if not seq:
+        return False
+    p = seq[-1]
+    left_sub = list(takewhile(lambda x: x < p, seq[:-1]))
+    right_sub = seq[len(left_sub):-1]
+    if not all(x>p for x in right_sub):
+        return False
+    left = right = True
+    if left_sub:
+        left = self.VerifySquenceOfBST(left_sub)
+    if right_sub:
+        right = self.VerifySquenceOfBST(right_sub)
+    return left and right
+```
+### 33_1 二叉树的后序遍历
 
 #### [LeetCode传送门](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
 
@@ -151,18 +172,14 @@ def postorderTraversal(self, root):
 方法四：dfs.
 
 ```python
-def postorderTraversal(self, root: 'TreeNode') -> 'List[int]':
-    ans = []
+def postorderTraversal(self, root: TreeNode) -> List[int]:
 
-    def dfs(node):
-        if not node:
-            return 
-        dfs(node.left)
-        dfs(node.right)
-        ans.append(node.val)
-        
-    dfs(root)
-    return ans
+    def dfs(n):
+        if n:
+            yield from dfs(n.left)
+            yield from dfs(n.right)
+            yield n.val
+    return list(dfs(root))
 ```
 
 ### 34 二叉树和为某一值的路径

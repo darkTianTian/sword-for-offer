@@ -10,6 +10,17 @@ def Mirror(self, root):
         self.Mirror(root.right)
 ```
 
+迭代
+
+```python
+def Mirror(self, root):
+    stack = root and [root]
+    while stack:
+        n = stack.pop()
+        if n:
+            n.left, n.right = n.right, n.left
+            stack += n.right, n.left
+```
 ### 28 对称的二叉树
 
 #### [LeetCode传送门](https://leetcode.com/problems/symmetric-tree/description/)
