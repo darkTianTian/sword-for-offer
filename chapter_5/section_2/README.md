@@ -36,6 +36,8 @@ def majorityElement(self, nums):
 
 #### 相似题目，但是求最大的k个数[LeetCode传送门](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
+#### [牛客网传送门](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=2)
+
 ```python
 def GetLeastNumbers_Solution(self, tinput, k):
     # write code here
@@ -59,6 +61,20 @@ def partition(self, nums, l, r):
             nums[l], nums[i] = nums[i], nums[l]
             l += 1
     return l-1  # the pivot index
+```
+
+使用堆，不改变原数组
+
+```python
+def GetLeastNumbers_Solution(self, tinput, k):
+    import heapq as hq
+    if k > len(tinput) or k <= 0: return []
+    heap = [-x for x in tinput[:k]]
+    hq.heapify(heap)
+    for num in tinput[k:]:
+        if -heap[0] > num:
+            hq.heapreplace(heap, -num)
+    return sorted(-x for x in heap)
 ```
 
 ### 41 数据流中的中位数
@@ -157,6 +173,17 @@ def countDigitOne(self, n):
     return countr
 ```
 
+### 44 数字序列中某一位的数字
+
+#### [LeetCode传送门](https://leetcode.com/problems/nth-digit/)
+
+```python
+def findNthDigit(self, n):
+    start, step, size = 1, 9, 1
+    while n > size * step:
+        n, start, step, size = n-size*step, start*10, step*10, size+1
+    return int(str(start + (n-1)//size)[(n-1) % size])
+```
 ### 45 把数组排成最小的数字
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
@@ -193,6 +220,41 @@ def PrintMinNumber(self, numbers):
     return ''.join(nums)
 ```
 
+### 46 把数字翻译成字符串
+
+#### [LeetCode传送门](https://leetcode.com/problems/decode-ways/)
+
+```python
+def numDecodings(self, s: str) -> int:
+    # w tells the number of ways
+    # v tells the previous number of ways
+    # d is the current digit
+    # p is the previous digit
+    v, w, p = 0, int(s>''), ''
+    for d in s:
+        v, w, p = w, int(d>'0')*w + (9<int(p+d)<27)*v, d
+    return w
+```
+### 47 礼物的最大价值
+
+#### [LeetCode传送门](https://leetcode.com/problems/unique-paths/)。相似题目，不过也差不少。
+
+#### [Acwing传送门](https://www.acwing.com/problem/content/56/)这个是原题。
+
+对首行使用初始化，然后消除了i的判断。
+
+```python
+def get_max_value(g: 'List[List[int]]') -> int:
+    R, C = len(g), len(g[0])
+    cur = list(itertools.accumulate(g[0]))
+    for i in range(1, R):
+        tmp = []
+        for j in range(C):
+            left = tmp[-1] if j > 0 else float('-inf')
+            tmp.append(max(cur[j], left) + g[i][j])
+        cur = tmp
+    return cur[-1]
+```
 ### 48 最长不含重复字符的子字符串
 
 #### [LeetCode传送门](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
@@ -201,13 +263,13 @@ def PrintMinNumber(self, numbers):
 
 ```python
 def lengthOfLongestSubstring(self, s):
-    res, start = 0, 0
-    dic = {}
-    for end in range(len(s)):
-        if s[end] in dic:
-            start = max(start, dic[s[end]]+1)
-        dic[s[end]] = end
-        res = max(res, end-start+1)
-    return res
+    ans = start = 0
+    pos = {}    # last index of element
+    for end, c in enumerate(s):
+        if c in pos:
+            start = max(start, pos[c]+1)
+        pos[c] = end
+        ans = max(ans, end-start+1)
+    return ans
 ```
 

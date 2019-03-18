@@ -1,8 +1,7 @@
 ### 10 斐波那契数列
 
-#### [LeetCode传送门](https://leetcode.com/problems/climbing-stairs/description/)
+#### [LeetCode传送门](https://leetcode.com/problems/fibonacci-number/)
 
-说明：爬楼梯问题的抽象
 ```python
 def fibonacci(n):
     a = b = 1
