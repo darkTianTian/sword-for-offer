@@ -1,12 +1,12 @@
 ### 49 丑数
 
-#### [LeetCode传送门](https://leetcode.com/problems/ugly-number-ii/discuss/)
+#### [LeetCode传送门](https://leetcode.com/problems/ugly-number-ii/)
 
 ```python
-def nthUglyNumber(self, n):
+def nthUglyNumber(self, n: int) -> int:
     q = [1]
-    t2, t3, t5 = 0, 0, 0
-    for i in range(n-1):
+    t2 = t3 = t5 = 0
+    for _ in range(n-1):
         a2, a3, a5 = q[t2]*2, q[t3]*3, q[t5]*5
         to_add = min(a2, a3, a5)
         q.append(to_add)
@@ -45,6 +45,10 @@ def firstUniqChar(self, s):
 ### 51 数组中的逆序对
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tqId=11188&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+
+#### [AcWing传送门](https://www.acwing.com/problem/content/61/)
+
+这里使用了双端队列感觉不太合适，因为还要显式地转成list，否则没法对剩余的left或right做切片。也试了将其改为stack，但是stack来回reverse又太麻烦。
 
 ```python
 def InversePairs(self, data):

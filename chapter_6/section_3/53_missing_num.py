@@ -23,14 +23,16 @@ def find_missing(nums: list) -> int:
     """
     解法1：限定有序的情况
     """
-    l, r = 0, len(nums)-1
-    while l < r:
-        mid = (l+r) // 2
-        if nums[mid] == mid:
-            l = mid + 1
+    lo, hi = 0, len(nums) - 1
+    while lo <= hi:
+        mid = (lo + hi) >> 1
+        if nums[mid] != mid:
+            if mid == 0 or nums[mid - 1] == mid - 1:
+                return mid
+            hi = mid - 1
         else:
-            r = mid
-    return nums[r]-1
+            lo = mid + 1
+    return lo
 
 
 def missingNumber(nums: list) -> int:
