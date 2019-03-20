@@ -1,8 +1,6 @@
 ### 60 n个骰子的点数
 
-#### 404.
-
-关于此题的实现，并没有找到特别pythonic的解法，大多都是直接从c++'翻译'过来的，参考[leetcode之n个骰子的点数，python版本](https://blog.csdn.net/leokingszx/article/details/80794407)，在此之上做了一些优化。dp表示所有骰子的结果集合，dp中的元素表示该骰子所有的次数集合，如下n=2后，dp为
+#### [AcWing传送门](https://www.acwing.com/problem/content/76/)
 
 ```
 [[1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]]
@@ -29,25 +27,22 @@ def dice_probability(n, val=6):
     return count
 ```
 
-感觉用dict来表示更加明确，没有数组下标从0开始的混淆。
+感觉用dict来表示更加明确，没有数组下标从0开始的混淆。按照AcWing中的返回写出一种解法。
 
 ```python
-def dice_probability_dict(n, val=6):
-    from collections import defaultdict
-    dp = defaultdict(int)
-    dp.update({k: 1 for k in range(1, val+1)})  # 初始化第一个骰子
-    for i in range(n-1):  # 根据第i个骰子更新第i+1个骰子
-        new_dp = defaultdict(int)
-        for j in range(n*(i+1), val*n+1):  # n个骰子最小值为n*(i+1)，最大值为val*n  
-            # 第i+1个骰子和为j（实际为j+1，因为数组下标从0开始）的次数，等于第i个
-            # 骰子j-1 ~ j-6次数的总和
-            new_dp[j] = sum(dp[j-k] for k in range(1, val+1))
-        dp = new_dp
+from collections import defaultdict
+from itertools import repeat
 
-    # 这时的dp就是得到我们想要的了，只不过值为出现的次数，我们算一下概率
-    count = {k: round(float(times / (val**n)), 5)
-             for k, times in dp.items()}
-    return count
+def numberOfDice(self, n):
+    last_p = defaultdict(int)
+    last_p.update(dict(zip(range(1, 7), repeat(1))))
+    for i in range(2, n+1):
+        new_p = defaultdict(int)
+        for j in range(i, i*6+1):
+            new_p[j] = sum(last_p[j-k] for k in range(1, 7))
+        # print(new_p)
+        last_p = new_p
+    return list(last_p.values())
 ```
 
 ### 61 扑克牌中的顺子
@@ -58,8 +53,6 @@ def dice_probability_dict(n, val=6):
 
 ```python
 def IsContinuous(self, numbers):
-    # poker = {k: k for k in range(2, 11)}
-    # poker.update({'A': 1, 'J': 11, 'Q': 12, 'K': 13, '0': 0})
     if not numbers:
         return False
     joker_count = numbers.count(0)
@@ -71,6 +64,28 @@ def IsContinuous(self, numbers):
         need_joker += (left_cards[i+1]-left_cards[i]-1)
     return need_joker <= joker_count
 ```
+
+使用标准库，更加优雅，原理相同。
+
+```python
+from itertools import tee
+
+def IsContinuous(self, numbers):
+    if not numbers:
+        return False
+    joker_count = numbers.count(0)
+    left_cards = sorted(numbers)[joker_count:]
+    need_joker = 0
+    c1, c2 = tee(left_cards)
+    next(c2, None)
+    for s, g in zip(c1, c2):
+        if g == s:
+            return False
+        need_joker += g - 1 - s
+    return need_joker <= joker_count
+```
+
+
 
 ### 62 圆圈中最后剩下的数字
 
