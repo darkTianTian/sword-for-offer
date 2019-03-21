@@ -124,13 +124,11 @@ def LastRemaining_Solution(self, n, m):
 
 ```python
 def maxProfit(self, prices: List[int]) -> int:
-    ans, min_buy = 0, float('inf')
-    for price in prices:
-        if price < min_buy:
-            min_buy = price
-        elif price-min_buy > ans:
-            ans = price - min_buy
-    return ans
+    profit, min_buy = 0, float('inf')
+    for p in prices:
+        min_buy = min(min_buy, p)
+        profit = max(profit, p-min_buy)
+    return profit
 ```
 
 方法二：标准的卡登算法。此题为53.连续数组最大和的变形，如果价格比之前小，则舍弃，否则一起计算连续子数组的和。
@@ -143,5 +141,20 @@ def maxProfit(self, prices: List[int]) -> int:
         cur = max(0, cur)
         sofar = max(cur, sofar)
     return sofar
+```
+
+方法三：使用标准库的卡登算法。
+
+```python
+def maxProfit(self, prices: List[int]) -> int:
+    from itertools import tee
+    cur = profit = 0
+    a, b = tee(prices)
+    next(b, None)
+    for before, today in zip(a, b):
+        cur += today - before
+        cur = max(0, cur)
+        profit = max(profit, cur)
+    return profit
 ```
 
