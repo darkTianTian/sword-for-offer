@@ -38,6 +38,8 @@ def find_min(nums):
 
 说明：回溯法。这道题在牛客网上做的，参考了排行前几的答案，却发现了问题，前几的答案中，find方法中的循环都在条件中直接return，这样依赖于整个条件判断的顺序，奇怪的是这样居然可以通过测试用例，可见牛客网的权威性还是不如LeetCode。例如输入`matrix = 'ABEESFCSADME', rows=3, cols=4, path='SEE'`返回了False，实际应该返回True。正确的做法不应直接return，而是保存结果用or判断，判断中也不应该使用`elif`。已经向牛客网多次反馈该问题，却得不到解决。
 
+**下面的是错误❌的解法。**
+
 ```python
 class Solution:
     def hasPath(self, matrix, rows, cols, path):

@@ -15,6 +15,8 @@
     False
     >>> hasPath('ABCESFCSADEE', rows=3, cols=4, path='SEE')
     True
+    >>> hasPath('ABCESFCSADEE', rows=3, cols=4, path='ABCESEEEFS')
+    True
 """
 
 
