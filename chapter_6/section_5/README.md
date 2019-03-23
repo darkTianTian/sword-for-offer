@@ -1,6 +1,7 @@
 ### 64 求1+2+···+n
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&tqId=11200&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/80/)
 
 这题对python不是很友好，感觉`and`也属于条件判断语句。`reduce``sum`之类的属于作弊行为，这里就不贴了。
 

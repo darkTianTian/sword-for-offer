@@ -86,7 +86,7 @@ def movingCount(self, threshold, rows, cols):
 
 ### 14 剪绳子
 
-#### 404.
+#### [AcWing传送门](https://www.acwing.com/problem/content/24/)
 
 说明：数学思想，当`n>=5`时，`2(n-2)>n`并且`3(n-3)>n`，而且`3(n-3) >= 2(n-2)`，所以尽可能多剪长度为3的绳子。如果长度为4的时候，`2*2>3*1`，所以4的时候就剪成`2*2`的两段。
 

@@ -48,6 +48,7 @@ def numberOfDice(self, n):
 ### 61 扑克牌中的顺子
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/762836f4d43d43ca9deb273b3de8e1f4?tpId=13&tqId=11198&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/77/)
 
 开始以为还要用个dict来映射值，后来发现直接传得卡牌的值。思想就是先排序，然后查joker的数量，看剩下牌的差值加起来能不能用已有的joker连起来。
 
@@ -90,6 +91,7 @@ def IsContinuous(self, numbers):
 ### 62 圆圈中最后剩下的数字
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&tqId=11199&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/78/)
 
 方法一：其实不需要环形链表，使用一个list足矣，每次将其旋转`rot`位，一开始想将要把第m个数旋转到list首部，然后再`pop(0)`，后来想到直接可以通过切片取出来，节省了`pop(0)`的O(n)复杂度。
 

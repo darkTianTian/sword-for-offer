@@ -109,8 +109,9 @@ def getNumberSameAsIndex(self, nums):
 ### 54 二叉搜索树的第k大节点
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=4&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/66/)
 
-注意：牛客网上是求第k小节点，这里被坑了一次，然后返回值居然要求返回节点对象，而不是节点值，否则一直报错，WTF。这里的答案按书中返回。如果是牛客网上需要把节点添加到`res`中，然后`return res[k-1]`
+注意：牛客网上是求第k小节点，这里被坑了一次，然后返回值居然要求返回节点对象，而不是节点值，这里的答案按书中返回。如果是牛客网上需要把节点添加到`res`中，然后`return res[k-1]`
 
 ```python
 def kth_largest(self, root: TreeNode, k: int) -> int:
@@ -294,6 +295,7 @@ def singleNumber(self, nums):
 
 ### 57 和为s的数字
 #### [牛客网传送门](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/71/)
 
 看牛客网上的描述，如果有多对数字和为s，要求返回乘积最小的一对。乍一看以为牛客网又乱改题，但是仔细一想，如果两个和为s的数，而且是在递增数组中很明显，边缘的数字乘积要小，例如`8X8>1X15`。所以还是和书中解法一样。
 
@@ -388,6 +390,7 @@ def reverseWords(self, s: str) -> str:
 ### 58_1 左旋转字符串
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/74/)
 
 切片，书中的方法个人觉得Python并不适用。
 
@@ -402,6 +405,7 @@ def LeftRotateString(self, s, n):
 ### 59 滑动窗口的最大值
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=4&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/75/)
 
 得益于python的切片。Time: O(n*k). k=n-size
 

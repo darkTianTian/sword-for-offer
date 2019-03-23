@@ -83,6 +83,7 @@ def deleteNode(self, node):
 ### 21 调整数组顺序使奇数位于偶数前面
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/30/)
 
 时间：O(n), 空间O(1)
 

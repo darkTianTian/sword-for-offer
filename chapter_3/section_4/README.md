@@ -2,6 +2,9 @@
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)
 
+#### [AcWing传送门](https://www.acwing.com/problem/content/32/)
+
+
 思路：两个指针，快指针先走k-1步，然后两个一起走，快指针走到尾节点时，慢指针在倒数第k个节点。
 需考虑k=0时和fast已经走到尾节点的情况。
 

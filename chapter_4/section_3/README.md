@@ -49,6 +49,7 @@ def validateStackSequences(self, pushed: 'List[int]', popped: 'List[int]') -> 'b
 ### 32 从上到下打印二叉树
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&tqId=11175&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/41/)
 
 双端队列
 

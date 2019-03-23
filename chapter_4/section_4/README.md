@@ -36,25 +36,25 @@ def copyRandomList(self, head: 'Node') -> 'Node':
 ### 36 二叉搜索树与双向链表
 
 #### LeetCode有此题，但是不是免费的。[牛客网传送门](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [AcWing传送门](https://www.acwing.com/problem/content/87/)
 
 方法一：中序遍历，再构造链表。
 
 ```python
-def Convert(self, root):
-    if not root:
-        return None
-    inorder = []
+def convert(self, root):
+    from itertools import tee
     def dfs(node):
         if node:
-            dfs(node.left)
-            inorder.append(node)
-            dfs(node.right)
+            yield from dfs(node.left)
+            yield node
+            yield from dfs(node.right)
 
-    dfs(root)
-    for i, n in enumerate(inorder[:-1]):
-        n.right = inorder[i+1]
-        inorder[i+1].left = n
-    return inorder[0]
+    a, b = tee(dfs(root))
+    ans = next(b, None)
+    for f, s in zip(a, b):
+        f.right = s
+        s.left = f
+    return ans
 ```
 
 <font color=#32CD32 size=3>方法二：分别递归处理左子树和右子树。</font>
