@@ -34,34 +34,33 @@ def find_min(nums):
 
 ### 12 矩阵中的路径
 
-#### [牛客网传送门](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
+#### [LeetCode传送门](https://leetcode.com/problems/word-search/)
 
-说明：回溯法。这道题在牛客网上做的，参考了排行前几的答案，却发现了问题，前几的答案中，find方法中的循环都在条件中直接return，这样依赖于整个条件判断的顺序，奇怪的是这样居然可以通过测试用例，可见牛客网的权威性还是不如LeetCode。例如输入`matrix = 'ABEESFCSADME', rows=3, cols=4, path='SEE'`返回了False，实际应该返回True。正确的做法不应直接return，而是保存结果用or判断，判断中也不应该使用`elif`。已经向牛客网多次反馈该问题，却得不到解决。
-
-**下面的是错误❌的解法。**
+**这道题一定一定要去LeetCode上做，牛客网和AcWing的TestCase都差了太多，毫不夸张地说牛客网此题Python排行榜中的答案很多都是错误的**。我写了一篇关于此题的博客，讲述了如何逐步地将一开始的错误代码改正确。这也是一开始我为什么要强调同样的题，要去LeetCode做的原因。[矩阵中的路径，你真的写对了么？](https://darktiantian.github.io/%E7%9F%A9%E9%98%B5%E4%B8%AD%E5%8D%95%E8%AF%8D%E7%9A%84%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%BE%88%E5%A4%9A%E4%BA%BA%E9%83%BD%E9%94%99%E4%BA%86/)
 
 ```python
-class Solution:
-    def hasPath(self, matrix, rows, cols, path):
-        for i in range(rows):
-            for j in range(cols):
-                if matrix[i*cols + j] == path[0]:
-                    if self.spread(list(matrix), rows, cols, path[1:], i, j):
-                        return True
-        return False
+def exist(self, g: List[List[str]], word: str) -> bool:
+    R, C = len(g), len(g[0])
 
-    def spread(self, matrix, rows, cols, path, i, j):
-        if not path:
+    def spread(i, j, w):
+        if not w:
             return True
-        matrix[i*cols + j] = '-'
+        original, g[i][j] = g[i][j], '-'
         spreaded = False
         for x, y in ((i-1, j), (i+1, j), (i, j-1), (i, j+1)):
-            if 0<=x<rows and 0<=y<cols and matrix[x*cols+y]==path[0]:
-                if self.spread(matrix, rows, cols, path[1:], x, y):
-                    spreaded = True
+            if (0<=x<R and 0<=y<C and w[0]==g[x][y]
+                    and spread(x, y, w[1:])):
+                spreaded = True
+                break
+        g[i][j] = original
         return spreaded
-```
 
+    for i in range(R):
+        for j in range(C):
+            if g[i][j] == word[0] and spread(i, j, word[1:]):
+                return True
+    return False
+```
 ### 13 机器人的运动范围
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
