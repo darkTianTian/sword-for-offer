@@ -101,6 +101,8 @@ def find_duplicate(nums: list) -> int:
 
 #### [牛客网传送门](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)
 
+#### [LeetCode传送门](<https://leetcode.com/problems/search-a-2d-matrix-ii/>)
+
 选取右上角为起始点。
 
 ```python
@@ -113,6 +115,19 @@ def find(target, array):
         elif array[row][col] < target:
             row += 1
         else:
+            return True
+    return False
+```
+
+更为优雅的方法。
+
+```python
+def searchMatrix(self, matrix, target):
+    j = -1
+    for row in matrix:
+        while j + len(row) and row[j] > target:
+            j -= 1
+        if row[j] == target:
             return True
     return False
 ```
