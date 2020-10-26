@@ -108,22 +108,19 @@ def mergeTwoLists(l1, l2):
 ```python
 def is_subtree(s: 'TreeNode', t: 'TreeNode') -> 'bool':
 
-    def is_same(s, t):
-        if s and t:
-            equal = s.val==t.val
-            if not t.left and not t.right:
-                return equal
-            else:
-                return (equal and is_same(s.left, t.left) and
-                        is_same(s.right, t.right))
-        else:
-            return s is t
+    def is_same(t1, t2):
+        if not t2:
+            return True
+        if not t1:
+            return False
+        return t1.val == t2.val and is_same(t1.left, t2.left) and is_same(t1.right, t2.right)
+
+    if not s or not t: return False
     stack = s and [s]
     while stack:
         node = stack.pop()
         if node:
-            res = is_same(node, t)
-            if res:
+            if is_same(node, t):
                 return True
             stack.append(node.right)
             stack.append(node.left)
